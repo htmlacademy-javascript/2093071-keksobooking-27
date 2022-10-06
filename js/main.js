@@ -6,6 +6,10 @@ const getRandomInt = (minValue, maxValue) => {
   const minInt = Math.ceil(minValue);
   const maxInt = Math.floor(maxValue);
 
+  if (typeof(minValue) !== 'number' || typeof(maxValue) !== 'number') {
+    return NaN;
+  }
+
   if (minInt < 0) {
     return 'Пожалуйста, введите положительное число от нуля включительно';
   }
@@ -23,6 +27,11 @@ getRandomInt (1, 20);
 
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно. Источник: https://learn.javascript.ru/number.
 const getRandomFloat = (minValue, maxValue, decimalPlaces) => {
+
+  if (typeof(minValue) !== 'number' || typeof(maxValue) !== 'number') {
+    return NaN;
+  }
+
   if (minValue < 0) {
     return 'Пожалуйста, введите положительное число от нуля включительно';
   }
