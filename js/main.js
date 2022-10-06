@@ -2,24 +2,13 @@
 
 const getRandomInt = (minValue, maxValue) => {
 
-  if (typeof(minValue) !== 'number' || typeof(maxValue) !== 'number') {
-    return NaN;
-  }
-
   const minInt = Math.ceil(minValue);
   const maxInt = Math.floor(maxValue);
 
-  if (minInt < 0) {
+  if (minInt < 0 || typeof(minValue) !== 'number' || typeof(maxValue) !== 'number' || minInt > maxInt || minInt === maxInt) {
     return NaN;
   }
 
-  if (minInt > maxInt) {
-    return NaN;
-  }
-
-  if (minInt === maxInt) {
-    return NaN;
-  }
   return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
 };
 getRandomInt (1, 20);
@@ -27,23 +16,12 @@ getRandomInt (1, 20);
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно. Источник: https://learn.javascript.ru/number.
 const getRandomFloat = (minValue, maxValue, decimalPlaces) => {
 
-  if (minValue < 0) {
-    return NaN;
-  }
-
-  if (typeof(minValue) !== 'number' || typeof(maxValue) !== 'number' || typeof(demicalPlaces) !== 'number') {
-    return NaN;
-  }
-
-  if (minValue > maxValue) {
-    return NaN;
-  }
-
-  if (minValue === maxValue) {
+  if (minValue < 0 || typeof(minValue) !== 'number' || typeof(maxValue) !== 'number' || typeof(decimalPlaces) !== 'number' || minValue > maxValue || minValue === maxValue) {
     return NaN;
   }
 
   const randomNumber = Math.random() * (maxValue - minValue + 1) + minValue;
+
   return Number(randomNumber.toFixed(decimalPlaces));
 };
 
