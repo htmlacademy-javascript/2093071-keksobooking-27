@@ -2,12 +2,12 @@
 
 const getRandomInt = (minValue, maxValue) => {
 
-  const minInt = Math.ceil(minValue);
-  const maxInt = Math.floor(maxValue);
-
-  if (typeof(minValue) !== 'number' || typeof(maxValue) !== 'number' || minInt < 0 || minInt > maxInt || minInt === maxInt) {
+  if (typeof(minValue) !== 'number' || typeof(maxValue) !== 'number' || minValue < 0 || minValue > maxValue || minValue === maxValue) {
     return NaN;
   }
+
+  const minInt = Math.ceil(minValue);
+  const maxInt = Math.floor(maxValue);
 
   return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
 };
