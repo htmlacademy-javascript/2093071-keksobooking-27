@@ -31,15 +31,15 @@ getRandomFloat (0, 20);
 // Функции, необходимые для создания массива из 10 сгенерированных JS-объектов. Каждый объект массива — описание похожего объявления неподалёку.
 
 // eslint-disable-next-line no-unused-vars
-const NUMBER_OF_GENERATED_OBJECTS = 10; // линтер спрашивает зачем нам эта переменная, если её не используют. Сделал исключение для этой переменной.
+const OFFER_COUNT = 10; // линтер спрашивает зачем нам эта переменная, если её не используют. Сделал исключение для этой переменной.
 
 const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 
-const CHECKIN = ['12:00', '13:00', '14:00'];
+const CHECKINS = ['12:00', '13:00', '14:00'];
 
-const CHECKOUT = ['12:00', '13:00', '14:00'];
+const CHECKOUTS = ['12:00', '13:00', '14:00'];
 
-const coordinates = {
+const COORDINATES = {
   lat: getRandomFloat(35.65000, 35.70000, 5),
   lng: getRandomFloat(139.70000, 139.80000, 5)
 };
@@ -48,7 +48,7 @@ const TITLES = ['Уютные аппартаменты недалеко от ц�
 
 const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
-const ADDRESS = `${coordinates.lat}, ${coordinates.lng}`;
+const ADDRESS = `${COORDINATES.lat}, ${COORDINATES.lng}`;
 
 const DESCRIPTION = ['Большой дом', 'Уютная хата', 'Место для остановки на один день', 'Дом у леса - мечта курьера', 'Et cetera'];
 
@@ -96,12 +96,12 @@ const getOffer = () => ({
   type: getRandomArrayElement(TYPES),
   rooms: getRandomInt(0, 50),
   guests: getRandomInt(1, 200),
-  checkin: getRandomArrayElement(CHECKIN),
-  checkout: getRandomArrayElement(CHECKOUT),
+  checkin: getRandomArrayElement(CHECKINS),
+  checkout: getRandomArrayElement(CHECKOUTS),
   features: [getFeatures(featuresValue, featuresValue.length)] ,
   description: getRandomArrayElement(DESCRIPTION),
   photos: [getRandomElements(PHOTOS)],
-  location: coordinates
+  location: COORDINATES
 });
 
 getOffer();
