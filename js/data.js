@@ -10,9 +10,9 @@ const CHECKINS = ['12:00', '13:00', '14:00'];
 
 const CHECKOUTS = ['12:00', '13:00', '14:00'];
 
-const price = {
-  minValue: 0,
-  maxValue: 1000000,
+const Price = {
+  MIN: 0,
+  MAX: 1000000,
 };
 
 const TITLES = [
@@ -23,7 +23,7 @@ const TITLES = [
   'Малоэтажный многоквартирный дом с наземной парковкой',
 ];
 
-const photos = [
+const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
@@ -57,7 +57,7 @@ const getOffer = () => {
     offer: {
       title: getRandomArrayElement(TITLES),
       address: `${lat}, ${lng}`,
-      price: getRandomInt(price.minValue, price.maxValue),
+      price: getRandomInt(Price.MIN, Price.MAX),
       type: getRandomArrayElement(TYPES),
       rooms: getRandomInt(0, 50),
       guests: getRandomInt(1, 200),
@@ -65,7 +65,7 @@ const getOffer = () => {
       checkout: getRandomArrayElement(CHECKOUTS),
       features: getFeatures(FEATURES, FEATURES.length),
       description: getRandomArrayElement(DESCRIPTIONS),
-      photos: getRandomPhotos(photos),
+      photos: getRandomPhotos(PHOTOS),
     },
     location: {
       lat: lat,
