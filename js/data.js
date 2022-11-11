@@ -59,8 +59,8 @@ const getOffer = () => {
       address: `${lat}, ${lng}`,
       price: getRandomInt(Price.MIN, Price.MAX),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomInt(0, 50),
-      guests: getRandomInt(1, 200),
+      rooms: getRandomInt(1, 50),
+      guests: getRandomInt(1, 100),
       checkin: getRandomArrayElement(CHECKINS),
       checkout: getRandomArrayElement(CHECKOUTS),
       features: getFeatures(FEATURES, FEATURES.length),
@@ -74,6 +74,4 @@ const getOffer = () => {
   };
 };
 
-const offers = Array.from({length:OFFER_COUNT}, getOffer);
-
-export {offers};
+export const getOffers = () => Array.from({length:OFFER_COUNT}, getOffer);

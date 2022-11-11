@@ -58,7 +58,7 @@ const getFeatures = ([...arrayName], maxLength) =>
 // функция, которая помогает вернуть массив случайной длины photos из заданных значений
 const getRandomPhotos = (elements) => {
   let currentIndex = elements.length;
-  while (currentIndex !== 0) {
+  while (currentIndex !== 1) {
     const randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
     [elements[currentIndex], elements[randomIndex]] = [
@@ -69,4 +69,40 @@ const getRandomPhotos = (elements) => {
   return elements.slice(getRandomInt(0, elements.length));
 };
 
-export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos};
+// функция, которая помогает вернуть тип жилья на рус языке
+const getRusTypeOfCard = (engTypeOfCard) => {
+  let rusTypeOfCard;
+  if (engTypeOfCard === 'flat') {
+    rusTypeOfCard = 'Квартира';
+  } else if (engTypeOfCard === 'bungalow') {
+    rusTypeOfCard = 'Бунгало';
+  } else if (engTypeOfCard === 'house') {
+    rusTypeOfCard = 'Дом';
+  } else if (engTypeOfCard === 'palace') {
+    rusTypeOfCard = 'Дворец';
+  } else if (engTypeOfCard === 'hotel') {
+    rusTypeOfCard = 'Отель';
+  }
+  return rusTypeOfCard;
+};
+
+// функция, которая по-русски пишет комнатА или комнатЫ при клонировании шаблона карточки оффера
+const getRooms = (sumOfRooms) => {
+  if (sumOfRooms > 1) {
+    return `${sumOfRooms} комнат`;
+  }
+  return '1 комната';
+};
+// функция, которая помогает получаеть отдельные значения src в карточке оффера
+//   arrayWithPhotos = offerCard.offer.photos; - массив, который получается в итоге.
+const getSeparatePhoto = (array, elementForClone, node) => {
+  const needToClone = array.length;
+  for (let i = 0; i < needToClone; i++) {
+    const clonedElement = elementForClone.cloneNode(true);
+    clonedElement.src = array[i];
+    node.append(clonedElement);
+  }
+};
+
+
+export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos, getRusTypeOfCard, getRooms, getSeparatePhoto};
