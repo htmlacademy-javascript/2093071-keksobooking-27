@@ -96,8 +96,11 @@ const getRooms = (sumOfRooms) => {
 // функция, которая помогает получаеть отдельные значения src в карточке оффера
 const getSeparatePhoto = (array, elementForClone, node) => {
   const needToClone = array.length;
-  if (needToClone === 0) { // почему при варианте, когда фотографий нет, не выводится строчка, которую ретёрнул?
-    return 'Фотографии объекта отсутствуют';
+  if (needToClone === 0) {
+    const newElement = document.createElement('p');
+    newElement.classList.add('popup__description');
+    newElement.textContent = 'Фотографии объекта отсутствуют';
+    node.append(newElement);
   }
   for (let i = 0; i < needToClone; i++) {
     const clonedElement = elementForClone.cloneNode(true);
