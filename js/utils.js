@@ -94,9 +94,11 @@ const getRooms = (sumOfRooms) => {
   return '1 комната';
 };
 // функция, которая помогает получаеть отдельные значения src в карточке оффера
-//   arrayWithPhotos = offerCard.offer.photos; - массив, который получается в итоге.
 const getSeparatePhoto = (array, elementForClone, node) => {
   const needToClone = array.length;
+  if (needToClone === 0) { // почему при варианте, когда фотографий нет, не выводится строчка, которую ретёрнул?
+    return 'Фотографии объекта отсутствуют';
+  }
   for (let i = 0; i < needToClone; i++) {
     const clonedElement = elementForClone.cloneNode(true);
     clonedElement.src = array[i];
