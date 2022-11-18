@@ -58,7 +58,7 @@ const getFeatures = ([...arrayName], maxLength) =>
 // функция, которая помогает вернуть массив случайной длины photos из заданных значений
 const getRandomPhotos = (elements) => {
   let currentIndex = elements.length;
-  while (currentIndex !== 1) {
+  while (currentIndex !== 0) {
     const randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
     [elements[currentIndex], elements[randomIndex]] = [
@@ -70,20 +70,18 @@ const getRandomPhotos = (elements) => {
 };
 
 // функция, которая помогает вернуть тип жилья на рус языке
-const getRusTypeOfCard = (engTypeOfCard) => {
-  let rusTypeOfCard;
-  if (engTypeOfCard === 'flat') {
-    rusTypeOfCard = 'Квартира';
-  } else if (engTypeOfCard === 'bungalow') {
-    rusTypeOfCard = 'Бунгало';
-  } else if (engTypeOfCard === 'house') {
-    rusTypeOfCard = 'Дом';
-  } else if (engTypeOfCard === 'palace') {
-    rusTypeOfCard = 'Дворец';
-  } else if (engTypeOfCard === 'hotel') {
-    rusTypeOfCard = 'Отель';
+const getRusTypeOfCard = (infoBlock, engTypeOfCard) => {
+  if (infoBlock === false) {
+    return '';
   }
-  return rusTypeOfCard;
+  const nameByType = {
+    flat: 'Квартира',
+    bungalow: 'Бунгало',
+    house: 'Дом',
+    palace: 'Дворец',
+    hotel: 'Отель'
+  };
+  return nameByType[engTypeOfCard];
 };
 
 // функция, которая по-русски пишет комнатА или комнатЫ при клонировании шаблона карточки оффера
@@ -93,21 +91,41 @@ const getRooms = (sumOfRooms) => {
   }
   return '1 комната';
 };
-// функция, которая помогает получаеть отдельные значения src в карточке оффера
-const getSeparatePhoto = (array, elementForClone, node) => {
-  const needToClone = array.length;
-  if (needToClone === 0) {
-    const newElement = document.createElement('p');
-    newElement.classList.add('popup__description');
-    newElement.textContent = 'Фотографии объекта отсутствуют';
-    node.append(newElement);
+
+const getGuests = (sumOfGuests) => {
+  if (sumOfGuests === 0) {
+    return 'не для гостей';
   }
-  for (let i = 0; i < needToClone; i++) {
-    const clonedElement = elementForClone.cloneNode(true);
-    clonedElement.src = array[i];
-    node.append(clonedElement);
+  if (sumOfGuests > 1) {
+    return `для ${sumOfGuests} гостей`;
+  } else if (sumOfGuests === 1) {
+    return 'для одного гостя';
   }
 };
 
 
-export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos, getRusTypeOfCard, getRooms, getSeparatePhoto};
+// функция, которая помогает скрывать блок, если не хватат информации для заполнения
+const fillingElement = (infoBlock, element, type) => {
+  if (infoBlock === false) {
+    element.classList.add('hidden');
+    return;
+  }
+  const titleOfInfoBlock = infoBlock.offer[type];
+  return titleOfInfoBlock;
+
+};
+
+const getCheckinCheckout = (infoBlock) => {
+  let checkin = `Заезд после ${infoBlock.offer.checkin}, `;
+  let checkout = `выезд после ${infoBlock.offer.checkout}`;
+  if (infoBlock.offer.checkin === undefined) {
+    checkin = 'Время заезда не указано. ';
+  }
+  if (infoBlock.offer.checkout === undefined) {
+    checkout = 'Время выезда не указано';
+  }
+  return checkin + checkout;
+};
+
+
+export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos, getRusTypeOfCard, getRooms, fillingElement, getGuests, getCheckinCheckout};

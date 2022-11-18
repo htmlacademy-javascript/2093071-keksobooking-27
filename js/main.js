@@ -1,1 +1,1 @@
-import './generating-similar-cards.js';
+import './card.js';
