@@ -85,13 +85,10 @@ const getRusTypeOfCard = (engTypeOfCard) => engTypeOfCard ? nameByType[engTypeOf
 const getRooms = (sumOfRooms) => {
   if (sumOfRooms === 1) {
     return '1 комната';
-  } else if (sumOfRooms === 2) {
-    return '2 комнаты';
-  } else if (sumOfRooms === 3) {
-    return '3 комнаты';
-  } else if (sumOfRooms === 100) {
-    return '100 комнат';
+  } else if (sumOfRooms < 5) {
+    return `${sumOfRooms} комнаты`;
   }
+  return `${sumOfRooms} комнат`;
 };
 
 // функция, которая помогает вернуть склонённое слово гость
