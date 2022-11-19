@@ -70,49 +70,36 @@ const getRandomPhotos = (elements) => {
 };
 
 // функция, которая помогает вернуть тип жилья на рус языке
-const getRusTypeOfCard = (infoBlock, engTypeOfCard) => {
-  if (infoBlock === false) {
-    return '';
-  }
-  const nameByType = {
-    flat: 'Квартира',
-    bungalow: 'Бунгало',
-    house: 'Дом',
-    palace: 'Дворец',
-    hotel: 'Отель'
-  };
-  return nameByType[engTypeOfCard];
+const nameByType = {
+  flat: 'Квартира',
+  bungalow: 'Бунгало',
+  house: 'Дом',
+  palace: 'Дворец',
+  hotel: 'Отель'
 };
+
+const getRusTypeOfCard = (engTypeOfCard) => engTypeOfCard ? nameByType[engTypeOfCard] : '';
+
 
 // функция, которая по-русски пишет комнатА или комнатЫ при клонировании шаблона карточки оффера
 const getRooms = (sumOfRooms) => {
-  if (sumOfRooms > 1) {
-    return `${sumOfRooms} комнат`;
+  if (sumOfRooms === 1) {
+    return '1 комната';
+  } else if (sumOfRooms === 2) {
+    return '2 комнаты';
+  } else if (sumOfRooms === 3) {
+    return '3 комнаты';
+  } else if (sumOfRooms === 100) {
+    return '100 комнат';
   }
-  return '1 комната';
 };
 
+// функция, которая помогает вернуть склонённое слово гость
 const getGuests = (sumOfGuests) => {
   if (sumOfGuests === 0) {
     return 'не для гостей';
   }
-  if (sumOfGuests > 1) {
-    return `для ${sumOfGuests} гостей`;
-  } else if (sumOfGuests === 1) {
-    return 'для одного гостя';
-  }
-};
-
-
-// функция, которая помогает скрывать блок, если не хватат информации для заполнения
-const fillingElement = (infoBlock, element, type) => {
-  if (infoBlock === false) {
-    element.classList.add('hidden');
-    return;
-  }
-  const titleOfInfoBlock = infoBlock.offer[type];
-  return titleOfInfoBlock;
-
+  return (sumOfGuests > 1) ? `для ${sumOfGuests} гостей` : 'для одного гостя';
 };
 
 const getCheckinCheckout = (infoBlock) => {
@@ -121,11 +108,11 @@ const getCheckinCheckout = (infoBlock) => {
   if (infoBlock.offer.checkin === undefined) {
     checkin = 'Время заезда не указано. ';
   }
-  if (infoBlock.offer.checkout === undefined) {
+  if (!infoBlock.offer.checkout) {
     checkout = 'Время выезда не указано';
   }
   return checkin + checkout;
 };
 
 
-export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos, getRusTypeOfCard, getRooms, fillingElement, getGuests, getCheckinCheckout};
+export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos, getRusTypeOfCard, getRooms, getGuests, getCheckinCheckout};
