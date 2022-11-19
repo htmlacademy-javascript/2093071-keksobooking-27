@@ -20,21 +20,20 @@ const TITLES = [
   'Бунгало с большим бассейном',
   'Большой дом с подземной парковкой',
   'Многоквартирный жилой комплекс',
-  'Малоэтажный многоквартирный дом с наземной парковкой',
+  'Малоэтажный многоквартирный дом с наземной парковкой'
 ];
 
 const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
 
 const DESCRIPTIONS = [
   'Большой дом',
   'Уютная хата',
   'Место для остановки на один день',
-  'Дом у леса - мечта курьера',
-  'Et cetera',
+  'Дом у леса - мечта курьера'
 ];
 
 const FEATURES = [
@@ -59,8 +58,8 @@ const getOffer = () => {
       address: `${lat}, ${lng}`,
       price: getRandomInt(Price.MIN, Price.MAX),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomInt(0, 50),
-      guests: getRandomInt(1, 200),
+      rooms: getRandomInt(1, 30),
+      guests: getRandomInt(0, 50),
       checkin: getRandomArrayElement(CHECKINS),
       checkout: getRandomArrayElement(CHECKOUTS),
       features: getFeatures(FEATURES, FEATURES.length),
@@ -74,6 +73,4 @@ const getOffer = () => {
   };
 };
 
-const offers = Array.from({length:OFFER_COUNT}, getOffer);
-
-export {offers};
+export const getOffers = () => Array.from({length:OFFER_COUNT}, getOffer);

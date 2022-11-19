@@ -69,4 +69,47 @@ const getRandomPhotos = (elements) => {
   return elements.slice(getRandomInt(0, elements.length));
 };
 
-export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos};
+// функция, которая помогает вернуть тип жилья на рус языке
+const nameByType = {
+  flat: 'Квартира',
+  bungalow: 'Бунгало',
+  house: 'Дом',
+  palace: 'Дворец',
+  hotel: 'Отель'
+};
+
+const getRusTypeOfCard = (engTypeOfCard) => engTypeOfCard ? nameByType[engTypeOfCard] : '';
+
+
+// функция, которая по-русски пишет комнатА или комнатЫ при клонировании шаблона карточки оффера
+const getRooms = (sumOfRooms) => {
+  if (sumOfRooms === 1) {
+    return '1 комната';
+  } else if (sumOfRooms < 5) {
+    return `${sumOfRooms} комнаты`;
+  }
+  return `${sumOfRooms} комнат`;
+};
+
+// функция, которая помогает вернуть склонённое слово гость
+const getGuests = (sumOfGuests) => {
+  if (sumOfGuests === 0) {
+    return 'не для гостей';
+  }
+  return (sumOfGuests > 1) ? `для ${sumOfGuests} гостей` : 'для одного гостя';
+};
+
+const getCheckinCheckout = (infoBlock) => {
+  let checkin = `Заезд после ${infoBlock.offer.checkin}, `;
+  let checkout = `выезд после ${infoBlock.offer.checkout}`;
+  if (infoBlock.offer.checkin === undefined) {
+    checkin = 'Время заезда не указано. ';
+  }
+  if (!infoBlock.offer.checkout) {
+    checkout = 'Время выезда не указано';
+  }
+  return checkin + checkout;
+};
+
+
+export {getRandomInt, getRandomFloat, getRandomArrayElement, getAvatar, getFeatures, getRandomPhotos, getRusTypeOfCard, getRooms, getGuests, getCheckinCheckout};

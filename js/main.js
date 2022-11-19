@@ -1,3 +1,6 @@
-import {offers} from '.js/data.js';
+import {getOffers} from './data.js';
+import { renderCard } from './card.js';
+const offers = getOffers();
+const card = offers[0];
 
-Math.random(offers); // написал, чтобы линтер не ругался.
+renderCard(card);
