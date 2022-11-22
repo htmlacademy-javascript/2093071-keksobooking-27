@@ -6,7 +6,8 @@ const capacity = adForm.querySelector('#capacity');
 
 
 const pristine = new Pristine(adForm, {
-  errorClass: 'ad-form__element--invalid',
+  classTo: 'ad-form__element',
+  errorTextParent: 'ad-form__element',
 });
 
 const validateTitle = (value) => value.length >= 30 && value.length <= 100;
