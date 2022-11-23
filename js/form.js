@@ -14,6 +14,13 @@ const pristine = new Pristine(adForm, {
 const validateTitle = (value) => value.length >= 30 && value.length <= 100;
 const validatePrice = (value) => value <= 100000;
 
+const roomsOption = {
+  '1': ['1'],
+  '2': ['2', '1'],
+  '3': ['3', '2', '1'],
+  '100': ['0'],
+};
+
 const validateRooms = () => (rooms.value === 1 && capacity === 1) ||
     (rooms.value === 2 && capacity === 1) ||
     (rooms.value === 2 && capacity === 2) ||
