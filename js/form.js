@@ -21,13 +21,10 @@ const roomsOption = {
   '100': ['0'],
 };
 
-const validateRooms = () => (rooms.value === 1 && capacity === 1) ||
-    (rooms.value === 2 && capacity === 1) ||
-    (rooms.value === 2 && capacity === 2) ||
-    (rooms.value === 3 && capacity === 1) ||
-    (rooms.value === 3 && capacity === 2) ||
-    (rooms.value === 3 && capacity === 3) ||
-    (rooms.value === 100 && capacity === 0);
+const validateRooms = () => (rooms.value === 1 && capacity === roomsOption[1]) ||
+    (rooms.value === 2 && capacity === roomsOption[2]) ||
+    (rooms.value === 3 && capacity === roomsOption[3]) ||
+    (rooms.value === 100 && capacity === roomsOption[100]);
 
 pristine.addValidator(title, validateTitle, 'введите от 30 до 100 символов');
 pristine.addValidator(price, validatePrice, 'максимальная цена 100 000/ р за ночь');
